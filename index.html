@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistem Absensi Guru Terpadu - Professional Grade">
+    <meta name="author" content="IT Development Team">
+    <title>Sistem Absensi Guru | Terpadu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-900 font-['Inter']">
+
+    <div id="loader" class="fixed inset-0 bg-slate-900 flex flex-col items-center justify-center z-[9999]">
+        <div class="h-24 w-24 border-t-8 border-b-8 border-blue-500 rounded-full animate-spin mb-8"></div>
+        <h2 class="text-white text-2xl font-black tracking-widest animate-pulse">SISTEM LOADING...</h2>
+    </div>
+
+    <div class="flex min-h-screen">
+        <aside class="w-72 bg-slate-900 text-white p-8 shadow-2xl fixed h-full border-r border-slate-700 z-50">
+            <div class="mb-10 text-center">
+                <h2 class="text-2xl font-bold text-blue-400">ABSENSI GURU</h2>
+                <p class="text-xs text-slate-500 mt-2 italic">Enterprise Edition v2.0</p>
+            </div>
+            
+            <nav class="space-y-4">
+                <a onclick="renderPage('dashboard')" class="nav-link block p-4 bg-slate-800 rounded-xl hover:bg-blue-600 transition cursor-pointer">📊 Dashboard Utama</a>
+                <a onclick="renderPage('absen')" class="nav-link block p-4 bg-slate-800 rounded-xl hover:bg-blue-600 transition cursor-pointer">📷 Pindai QR Code</a>
+                <a onclick="renderPage('data-guru')" class="nav-link block p-4 bg-slate-800 rounded-xl hover:bg-blue-600 transition cursor-pointer">👥 Data Pengguna</a>
+                <a onclick="renderPage('rekap')" class="nav-link block p-4 bg-slate-800 rounded-xl hover:bg-blue-600 transition cursor-pointer">📄 Rekapitulasi</a>
+                <a onclick="renderPage('jadwal')" class="nav-link block p-4 bg-slate-800 rounded-xl hover:bg-blue-600 transition cursor-pointer">📅 Jadwal Akademik</a>
+                <a onclick="renderPage('profil')" class="nav-link block p-4 bg-slate-800 rounded-xl hover:bg-blue-600 transition cursor-pointer">⚙️ Pengaturan</a>
+            </nav>
+
+            <button onclick="logout()" class="mt-20 w-full py-4 bg-red-600 rounded-xl font-bold hover:bg-red-700 transition shadow-lg shadow-red-900/20">LOGOUT</button>
+        </aside>
+
+        <main class="ml-72 flex-1 p-10">
+            <header class="flex justify-between items-center bg-white p-8 rounded-2xl shadow-sm border border-slate-100 mb-10">
+                <div>
+                    <h2 id="page-title" class="text-4xl font-black uppercase">DASHBOARD</h2>
+                    <p class="text-slate-400 text-sm mt-1">Sistem Monitoring Real-Time</p>
+                </div>
+                <div id="clock" class="text-slate-400 font-mono font-bold text-lg bg-slate-50 px-6 py-3 rounded-lg border border-slate-200">00:00:00</div>
+            </header>
+
+            <section id="content-area" class="min-h-[500px]">
+                </section>
+
+            <footer class="mt-20 pt-10 border-t border-slate-200 grid grid-cols-3 gap-10">
+                <div>
+                    <h4 class="font-bold mb-2">Informasi</h4>
+                    <p class="text-sm text-slate-500">Versi Sistem: 2.0.26</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Support</h4>
+                    <p class="text-sm text-slate-500">Hubungi IT Administrator</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Copyright</h4>
+                    <p class="text-sm text-slate-500">&copy; 2026 PT. Inovasi Pendidikan</p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <div id="modal-wrapper" class="hidden fixed inset-0 bg-black/60 z-[9999] flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-10 w-full max-w-lg shadow-2xl animate-in fade-in zoom-in">
+            <h3 id="modal-title" class="text-2xl font-black mb-6">Form Input</h3>
+            <div id="modal-content" class="space-y-4">
+                </div>
+            <div class="flex gap-4 mt-8">
+                <button onclick="closeModal()" class="flex-1 py-4 bg-slate-200 rounded-xl font-bold">Batal</button>
+                <button onclick="saveData()" class="flex-1 py-4 bg-blue-600 text-white rounded-xl font-bold">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="script.js"></script>
+
+    </body>
+</html>
